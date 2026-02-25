@@ -1,0 +1,26 @@
+meta {
+  name: post Autor
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/autores/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "nome": "Andre teste"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

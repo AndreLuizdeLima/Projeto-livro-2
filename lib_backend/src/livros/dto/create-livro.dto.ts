@@ -8,7 +8,7 @@ export class CreateLivroDto {
   genero: string;
 
   @IsString()
-  autor: string;
+  autorId: string;
 
   @IsDateString()
   dataCriacao: string;

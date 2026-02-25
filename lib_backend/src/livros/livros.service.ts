@@ -7,14 +7,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class LivrosService {
-
   constructor(
     @InjectRepository(Livro)
-    private readonly repository: Repository<Livro>
+    private readonly repository: Repository<Livro>,
   ) {}
 
   create(dto: CreateLivroDto) {
-    const livro = this.repository.create(dto);
+    const livro = this.repository.create({
+      ...dto,
+      autorId: dto.autorId,
+    });
     return this.repository.save(livro);
   }
 
