@@ -1,13 +1,17 @@
 meta {
-  name: deleteLivros
+  name: delete livro
   type: http
   seq: 4
 }
 
 delete {
-  url: http://localhost:3000/livros/dev_LlgfyTHw7CJ2Y_LEaX7ec
+  url: http://localhost:3000/livros/:id
   body: none
   auth: inherit
+}
+
+params:path {
+  id: 
 }
 
 settings {

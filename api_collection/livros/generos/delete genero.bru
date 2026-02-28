@@ -1,0 +1,26 @@
+meta {
+  name: delete genero
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost:3000/generos/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "nome": "genero teste"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
