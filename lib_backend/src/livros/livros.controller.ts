@@ -27,6 +27,11 @@ export class LivrosController {
     return this.livrosService.findAll();
   }
 
+  @Get('/structured')
+  findAllStructured() {
+    return this.livrosService.findAllStructured();
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const livros = await this.livrosService.findOne(id);

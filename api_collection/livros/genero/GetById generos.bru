@@ -1,13 +1,17 @@
 meta {
-  name: getAllLivros
+  name: GetById generos
   type: http
-  seq: 1
+  seq: 2
 }
 
 get {
-  url: http://localhost:3000/livros/
+  url: http://localhost:3000/generos/:id
   body: none
   auth: inherit
+}
+
+params:path {
+  id: 
 }
 
 settings {

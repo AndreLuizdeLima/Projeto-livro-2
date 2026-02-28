@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { LivrosModule } from './livros/livros.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AutoresModule } from './autores/autores.module';
+import { GenerosModule } from './generos/generos.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AutoresModule } from './autores/autores.module';
       synchronize: true,
     }),
     AutoresModule,
+    GenerosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

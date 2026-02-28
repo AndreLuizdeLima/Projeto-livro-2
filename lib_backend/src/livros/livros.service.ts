@@ -21,7 +21,29 @@ export class LivrosService {
   }
 
   findAll() {
-    return this.repository.find();
+    return this.repository.find({
+      relations: {
+        autor: true,
+        genero: true,
+      },
+    });
+  }
+
+  findAllStructured() {
+    return this.repository
+      .find({
+        relations: { autor: true, genero: true },
+      })
+      .then((livros) =>
+        livros.map(({ autor, genero, ...livro }) => {
+          return {
+            titulo: livro?.titulo,
+            dataCriacao: livro?.dataCriacao,
+            autorNome: autor?.nome ?? null,
+            generoNome: genero?.nome ?? null,
+          };
+        }),
+      );
   }
 
   findOne(id: string) {

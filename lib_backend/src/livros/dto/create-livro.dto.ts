@@ -5,7 +5,7 @@ export class CreateLivroDto {
   titulo: string;
 
   @IsString()
-  genero: string;
+  generoId: string;
 
   @IsString()
   autorId: string;

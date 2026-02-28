@@ -1,4 +1,5 @@
 import { Autor } from 'src/autores/entities/autor.entity';
+import { Genero } from 'src/generos/entities/genero.entity';
 import { BeforeInsert, Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-require-imports
@@ -12,11 +13,17 @@ export class Livro {
   @Column()
   titulo: string;
 
-  @Column()
-  genero: string;
+  @Column({ nullable: true })
+  generoId: string | null;
 
-  @Column()
-  autorId: string;
+  @ManyToOne(() => Genero, (genero) => genero.livros, {
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn({ name: 'generoId' })
+  genero: Genero;
+
+  @Column({ nullable: true })
+  autorId: string | null;
 
   @ManyToOne(() => Autor, (autor) => autor.livros, {
     onDelete: 'SET NULL',

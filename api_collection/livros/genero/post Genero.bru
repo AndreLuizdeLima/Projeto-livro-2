@@ -1,0 +1,22 @@
+meta {
+  name: post Genero
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/generos/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "genero teste"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
