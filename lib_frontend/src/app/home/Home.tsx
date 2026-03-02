@@ -1,7 +1,13 @@
+import NavBar from "@/components/nav-bar.tsx";
+import { Outlet } from "react-router-dom";
+
 const Home = () => {
   return (
-    <div>Home projeto livros</div>
-  )
-}
+    <div className="flex flex-col">
+      <NavBar />
+      <Outlet />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
