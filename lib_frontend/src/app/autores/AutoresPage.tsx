@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const AutoresPage = () => {
   const fetchAutores = async () => {
-    const response = await fetch("http://localhost:3000/autores/");
+    const response = await fetch("http://localhost:3000/api/v1/autores/");
 
     if (!response.ok) {
       throw new Error("Erro ao buscar autores");
@@ -14,7 +14,7 @@ const AutoresPage = () => {
   };
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["autores"],
     queryFn: fetchAutores,
   });
 

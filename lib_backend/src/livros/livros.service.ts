@@ -1,27 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLivroDto } from './dto/create-livro.dto';
 import { UpdateLivroDto } from './dto/update-livro.dto';
-import { Repository } from 'typeorm';
-import { Livro } from './entities/livro.entity';
-import { InjectRepository } from '@nestjs/typeorm';
+import { LivroRepository } from './repositories/livro.repository';
 
 @Injectable()
 export class LivrosService {
-  constructor(
-    @InjectRepository(Livro)
-    private readonly repository: Repository<Livro>,
-  ) {}
+  constructor(private readonly repository: LivroRepository) {}
 
   create(dto: CreateLivroDto) {
     const livro = this.repository.create({
       ...dto,
       autorId: dto.autorId,
     });
-    return this.repository.save(livro);
+    return livro;
   }
 
   findAll() {
-    return this.repository.find({
+    return this.repository.findAll({
       relations: {
         autor: true,
         genero: true,
@@ -31,7 +26,7 @@ export class LivrosService {
 
   findAllStructured() {
     return this.repository
-      .find({
+      .findAll({
         relations: { autor: true, genero: true },
       })
       .then((livros) =>
@@ -51,16 +46,10 @@ export class LivrosService {
   }
 
   async update(id: string, dto: UpdateLivroDto) {
-    const livro = await this.repository.findOneBy({ id });
-    if (!livro) return null;
-    this.repository.merge(livro, dto);
-    return this.repository.save(livro);
+    return this.repository.update({ id }, dto);
   }
 
   async remove(id: string) {
-    const livro = await this.repository.findOneBy({ id });
-    if (!livro) return null;
-
-    return this.repository.remove(livro);
+    return this.repository.remove({ id });
   }
 }
